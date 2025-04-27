@@ -9,6 +9,7 @@ export async function POST(request: Request) {
     try {
         const { username, email, password } = await request.json();
 
+        //check if username is already taken
         const existingUserVerifiedByUsername = await UserModel.findOne({
             username,
             isVerified: true,
@@ -26,6 +27,9 @@ export async function POST(request: Request) {
             );
         }
 
+
+
+        //check if email is already taken
         const existingUserByEmail = await UserModel.findOne({ email });
 
         const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
