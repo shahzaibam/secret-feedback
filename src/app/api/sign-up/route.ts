@@ -10,10 +10,11 @@ export async function POST(request: Request) {
     const existingUserByThisEmail = await UserModel.findOne({ email });
     const newCode = Math.floor(1000000 + Math.random() * 900000);
 
+    //check if there is any user associated with this email
     if (existingUserByThisEmail) {
-        if (existingUserByThisEmail.isVerified) {
+        if (existingUserByThisEmail.isVerified) { //check if the user is verified, if it is then email is already taken
             return new Response(JSON.stringify({ success: false, message: "Email is already taken" }), { status: 400 });
-        } else {
+        } else { //if it isn't verified update the user with the new password and new verify code and save it
             const hashedPassword = await bcrypt.hash(password, 10);
             existingUserByThisEmail.password = hashedPassword;
             existingUserByThisEmail.verifyCode = newCode.toString();
@@ -22,6 +23,8 @@ export async function POST(request: Request) {
         }
     }
 
+
+    //if arrives until here it means that it's a totally new user
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new UserModel({
         username,
