@@ -1,4 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
+import { sendVerificationEmail } from "@/lib/sendVerificationEmail";
 import UserModel from "@/model/User";
 import bcrypt from "bcryptjs";
 
@@ -37,6 +38,8 @@ export async function POST(request: Request) {
     });
 
     await newUser.save();
+
+    await sendVerificationEmail(email, username, newCode.toString());
 
     return new Response(JSON.stringify({ success: true, message: "User successfully created" }), { status: 201 });
 }
