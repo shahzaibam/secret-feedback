@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Components/Benefit.js", "src/app/Components/ThemeToggle.js", "src/app/Components/Navbar.js", "src/app/Components/Home.js"],
   "exclude": ["node_modules"]
 }
