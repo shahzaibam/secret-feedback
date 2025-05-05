@@ -1,5 +1,7 @@
 "use client"
 import React, { useState } from 'react';
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
 
@@ -9,17 +11,43 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
 
 
-    function createAccount(e) {
+    async function createAccount(e: React.FormEvent) {
 
         e.preventDefault();
 
-        const user = {
-            fullname,
-            email,
-            confirmPassword
+        if (password !== confirmPassword) {
+            toast.error("Password do not match");
+            return
         }
 
-        console.log(user)
+
+        try {
+
+            const response = await fetch("/api/sign-up", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: fullname,
+                    email,
+                    password
+                }),
+            });
+
+            const data = await response.json();
+            console.log(data);
+
+            if (response.ok) {
+                toast.success("Account created! Check your email for the verification code");
+            } else {
+                toast.error(data.message || "Something went wrong");
+            }
+        } catch (error) {
+            toast.error("Error creating account: " + (error instanceof Error ? error.message : String(error)));
+
+            toast.error("something went wrong. try again later.")
+        }
 
         setFullName("");
         setEmail("");
@@ -31,7 +59,10 @@ const SignUp = () => {
     return (
         <div className="flex mt-64 items-center justify-center bg-gradient-to-r px-4">
             <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full">
+                <Toaster position="top-center" />
+
                 <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Create an Account</h2>
+
                 <form className="space-y-4" onSubmit={(e) => createAccount(e)}>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Full Name</label>
