@@ -10,7 +10,7 @@ const SignIn = () => {
     const [password, setPassword] = useState("");
 
 
-    async function checkLogin(e: React.FormEvent) {
+    async function userLogin(e: React.FormEvent) {
 
         e.preventDefault();
 
@@ -58,7 +58,7 @@ const SignIn = () => {
                 <Toaster position="top-center" />
 
                 <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Sign In</h2>
-                <form className="space-y-4" onSubmit={(e) => checkLogin(e)}>
+                <form className="space-y-4" onSubmit={(e) => userLogin(e)}>
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Email Address</label>
                         <input

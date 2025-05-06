@@ -21,7 +21,7 @@ function HeroSection() {
                         Sign Up
                     </Link>
                     <Link
-                        href="/login"
+                        href="/sign-in"
                         className="bg-transparent border-2 border-white text-black dark:text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-white hover:text-black transition duration-300"
                     >
                         Login
