@@ -29,7 +29,6 @@ export default function ThemeToggle() {
                     onChange={handleToggle}
                 />
                 <div className="w-12 h-6 bg-gray-200 dark:bg-gray-600 rounded-full">
-                    {/* Círculo deslizante - ahora su posición depende del estado del theme */}
                     <div
                         className={`absolute w-4 h-4 rounded-full transition-transform duration-300 ease-in-out top-1 ${theme === 'dark' ? 'translate-x-6 bg-blue-400' : 'translate-x-1 bg-yellow-400'
                             }`}

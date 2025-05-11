@@ -4,7 +4,6 @@ import Link from 'next/link'
 function HeroSection() {
     return (
         <div className="text-black dark:text-white flex flex-col justify-center mt-64">
-            {/* Contenido principal */}
             <div className="relative z-10 text-center px-4 sm:px-8">
                 <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight mb-4">
                     Get Anonymous Feedback & Grow
