@@ -6,6 +6,7 @@ import ThemeToggle from './ThemeToggle';
 const Navbar = () => {
     const [token, setToken] = useState<string | null>(null);
 
+    //just when the navbar reloads, get the token if it exists
     useEffect(() => {
         if (typeof window !== "undefined") {
             const storedToken = localStorage.getItem("token");
@@ -14,6 +15,7 @@ const Navbar = () => {
         }
     }, []);
 
+    //when doing the log out delete the token and the username 
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
@@ -39,6 +41,7 @@ const Navbar = () => {
                             </li>
                         ))}
 
+                        {/* CHANGE THE NAVBAR IF EXISTS THE TOKEN */}
                         {!token ? (
                             <>
                                 <li>
@@ -61,7 +64,7 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <button onClick={handleLogout} className="text-red-600 hover:underline">
-                                        Cerrar sesión
+                                        Log Out
                                     </button>
                                 </li>
                             </>
