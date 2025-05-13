@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
+import { useRouter } from 'next/navigation';
 
 
 const SignIn = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
 
     async function userLogin(e: React.FormEvent) {
@@ -36,7 +38,14 @@ const SignIn = () => {
             console.log(data);
 
             if (response.ok) {
+
+                console.log(data.username)
+
                 toast.success("Logged In! Check your console log");
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", data.username);
+
+                router.push('/home-in'); // pasa el nombre en la URL
             } else {
                 toast.error(data.message || "Something went wrong");
             }

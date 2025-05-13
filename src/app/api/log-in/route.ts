@@ -26,7 +26,8 @@ export async function POST(request: Request) {
                 return new Response(JSON.stringify({
                     success: true,
                     message: "You are successfully logged In",
-                    token
+                    token,
+                    username: isUserExisting.username
                 }), {
                     status: 200
                 })
