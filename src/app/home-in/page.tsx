@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from 'react';
-import Navbar from '../Components/Navbar';
+import { useEffect, useState } from "react";
+import Navbar from "../Components/Navbar";
+import MessageAcceptanceToggle from "../Components/MessageAcceptanceToggle";
 
 const HomeIn = () => {
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState("");
 
     useEffect(() => {
         const storedName = localStorage.getItem("username");
@@ -13,7 +14,10 @@ const HomeIn = () => {
     return (
         <div>
             <Navbar />
-            <h1 className="text-xl font-bold">Bienvenido, {username}!</h1>
+            <div className="text-center mt-20">
+                <h1 className="text-xl font-bold">Bienvenido, {username}!</h1>
+                {username && <MessageAcceptanceToggle username={username} />}
+            </div>
         </div>
     );
 };
