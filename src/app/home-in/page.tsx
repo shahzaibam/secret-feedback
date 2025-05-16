@@ -15,7 +15,7 @@ const HomeIn = () => {
         <div>
             <Navbar />
             <div className="text-center mt-20">
-                <h1 className="text-xl font-bold">Bienvenido, {username}!</h1>
+                <h1 className="text-xl font-bold">Welcome back, {username}!</h1>
                 {username && <MessageAcceptanceToggle username={username} />}
             </div>
         </div>
