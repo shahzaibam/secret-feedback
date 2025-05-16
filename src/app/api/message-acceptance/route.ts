@@ -21,7 +21,6 @@ export async function POST(request: Request) {
             });
         }
 
-        // Toggle the value
         user.isAcceptingMessage = !user.isAcceptingMessage;
         await user.save();
 
