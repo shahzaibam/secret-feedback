@@ -32,7 +32,7 @@ const Navbar = () => {
 
                 <div>
                     <ul className='flex gap-10 items-center'>
-                        {[{ label: "Services", href: "/services" },
+                        {[{ label: "Home", href: "/" },
                         { label: "Projects", href: "/projects" },
                         { label: "About", href: "/about" },
                         ].map((item, index) => (
@@ -52,6 +52,12 @@ const Navbar = () => {
                                 <li>
                                     <Link href="/sign-up">
                                         <button>Sign Up</button>
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link href="/send-message">
+                                        <button>Send Message</button>
                                     </Link>
                                 </li>
                             </>
