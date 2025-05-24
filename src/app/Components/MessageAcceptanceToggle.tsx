@@ -1,13 +1,33 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
     username: string;
 }
 
 const MessageToggleAcceptance = ({ username }: Props) => {
-    const [isAccepting, setIsAccepting] = useState(true);
+    const [isAccepting, setIsAccepting] = useState<boolean | null>(null);
     const [loading, setLoading] = useState(false);
+
+    // Fetch status from DB when component mounts
+    useEffect(() => {
+        const fetchStatus = async () => {
+            try {
+                const res = await fetch(`/api/message-acceptance?username=${username}`);
+                const data = await res.json();
+
+                if (data.success) {
+                    setIsAccepting(data.isAcceptingMessage);
+                } else {
+                    console.error("Failed to fetch status:", data.message);
+                }
+            } catch (error) {
+                console.error("Error fetching status:", error);
+            }
+        };
+
+        fetchStatus();
+    }, [username]);
 
     const handleToggle = async () => {
         setLoading(true);
@@ -34,6 +54,11 @@ const MessageToggleAcceptance = ({ username }: Props) => {
 
         setLoading(false);
     };
+
+    // Wait for data to load
+    if (isAccepting === null) {
+        return (<div className="mt-10 text-center">Loading...</div>);
+    }
 
     return (
         <div className="mt-10 flex items-center justify-center gap-4">
