@@ -6,6 +6,8 @@ const SendMessageInput = () => {
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState<string | null>(null);
 
+
+    //send feedback to the user, checks everything if user exists, then if it is accepting messages or not, if yes then send the message and store it
     async function handleSendFeedback(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
@@ -31,6 +33,7 @@ const SendMessageInput = () => {
         }
     }
 
+    //set time out just to show the status for 3 seconds
     useEffect(() => {
         if (status) {
             const timer = setTimeout(() => {
@@ -39,6 +42,9 @@ const SendMessageInput = () => {
             return () => clearTimeout(timer);
         }
     }, [status]);
+
+
+
 
     return (
         <div className='w-auto'>
