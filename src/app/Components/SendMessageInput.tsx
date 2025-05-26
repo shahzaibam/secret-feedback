@@ -33,7 +33,7 @@ const SendMessageInput = () => {
         }
     }
 
-    //set time out just to show the status for 3 seconds
+    //set time out just to show the status for 3 seconds, after showing for 3 seconds it will be hidden
     useEffect(() => {
         if (status) {
             const timer = setTimeout(() => {
