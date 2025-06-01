@@ -50,8 +50,8 @@ const SendMessageInput = () => {
         <div className='w-auto'>
             <div className='text-center'>
 
-                <h1 className='text-3xl font-semibold py-10 tracking-tight uppercase'>
-                    Write the username and the message/feedback <br /> you want to send that user
+                <h1 className='text-3xl font-semibold py-10 tracking-tight '>
+                    Write the username and the message
                 </h1>
 
                 <form onSubmit={handleSendFeedback} className="flex justify-center gap-2 flex-wrap">
