@@ -65,7 +65,7 @@ const SendMessageInput = () => {
 
                     <input
                         type="text"
-                        placeholder="Your message..."
+                        placeholder="Type your feedback/message..."
                         className="border p-2 px-8 rounded"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
