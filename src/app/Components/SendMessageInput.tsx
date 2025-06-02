@@ -7,6 +7,25 @@ const SendMessageInput = () => {
     const [status, setStatus] = useState<string | null>(null);
 
 
+    const getAISuggestion = async () => {
+        try {
+            const res = await fetch("/api/suggest-message");
+            const data = await res.json();
+
+            if (data.success) {
+                setMessage(data.suggestion);
+            } else {
+                setStatus("❌ Could not get AI suggestion.");
+            }
+        } catch (error: Error | unknown) {
+            console.error("OpenAI Error:", error instanceof Error ? error.message : error);
+            setStatus("❌ Could not get AI suggestion.");
+        }
+
+    };
+
+
+
     //send feedback to the user, checks everything if user exists, then if it is accepting messages or not, if yes then send the message and store it
     async function handleSendFeedback(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -76,6 +95,15 @@ const SendMessageInput = () => {
                         value="Send"
                         className='bg-blue-600 text-white p-2 px-6 rounded cursor-pointer'
                     />
+
+                    <button
+                        type="button"
+                        onClick={getAISuggestion}
+                        className="bg-purple-600 text-white p-2 px-4 rounded"
+                    >
+                        ✨ Suggest Message
+                    </button>
+
                 </form>
 
                 {status && <p className="mt-4 text-lg">{status}</p>}
